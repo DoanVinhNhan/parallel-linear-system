@@ -7,7 +7,7 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Thời gian** — 24–25/10/2026, theo ngữ cảnh ngày hiển thị trong cuộc trò chuyện.
 - **Người sử dụng** — Đoàn Vĩnh Nhân.
 - **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
-- **Mục đích** — So sánh các chủ đề môn học và tìm mối liên hệ để hiểu bộ giải Neko.
+- **Mục đích** — So sánh các chủ đề môn học và tìm mối liên hệ để hiểu bộ giải Neko (Framework CFD mà Đoàn Vĩnh Nhân đang contributor).
 - **Prompt chính** — Chủ đề nào liên quan nhất đến Neko, giải tích số và CFD? Nên chỉ giải \(Ax=b\) hay xét thêm một phương trình cụ thể? Có các họ thuật toán nào?
 - **Kết quả** — AI đề xuất Chủ đề 1, từng đề xuất Poisson 2D và thu hẹp sớm vào Jacobi/Gauss–Seidel, sau đó liệt kê các họ thuật toán khi người dùng yêu cầu.
 - **Phần đã sử dụng** — Chủ đề giải hệ tuyến tính và phân loại thuật toán làm cơ sở thảo luận.
@@ -39,7 +39,7 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Phần đã sử dụng** — Bản kế hoạch có phần tóm tắt, công thức đo và lược đồ lưu sai số theo từng chuẩn. Các tệp ghi nhận AI được tạo để nhóm rà soát.
 - **Chỉnh sửa của nhóm** — Để mở nguồn ma trận và đánh dấu chỗ nhóm tự điền bốn đầu mục PCAM cho từng thuật toán, số lượng chuẩn, loại chuẩn và tiêu chuẩn dừng.
 - **Kiểm chứng** — Đối chiếu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI với văn bản đề. Biên dịch LaTeX và kiểm tra bố cục các bản PDF. Công thức và lược đồ bản ghi dùng cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
-- **Commit/issue liên quan** — `Initial commit`, `add abstract`, `change doc`.
+- **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc).
 
 ## Mẫu cho phiên tiếp theo
 
