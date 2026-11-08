@@ -1,0 +1,344 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T5]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage{lmodern}
+\usepackage[margin=25mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,tabularx,array}
+\usepackage{xcolor}
+\usepackage[protrusion=false]{microtype}
+\usepackage[hidelinks]{hyperref}
+
+% Thay từng \dien{...} bằng giá trị đã được nhóm xác nhận.
+\definecolor{placeholder}{RGB}{255,242,174}
+\newcommand{\dien}[1]{\colorbox{placeholder}{\strut\small [#1]}}
+\newcommand{\field}[1]{\texttt{#1}}
+\newcommand{\pcam}{%
+  \begin{description}
+    \item[P --- Phân hoạch (Partitioning)] \dien{Điền cách chia công việc và dữ liệu}
+    \item[C --- Giao tiếp (Communication)] \dien{Điền dữ liệu trao đổi và điểm đồng bộ}
+    \item[A --- Gộp (Agglomeration)] \dien{Điền cách gộp các đơn vị công việc}
+    \item[M --- Ánh xạ (Mapping)] \dien{Điền cách gán công việc lên GPU}
+  \end{description}}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\emergencystretch}{2em}
+\raggedbottom
+
+\title{Kế hoạch giải hệ tuyến tính song song trên GPU}
+\author{Môn Lập trình tính toán song song \\ Nhóm \dien{Tên nhóm và thành viên}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Phạm vi và câu hỏi thí nghiệm}
+
+Nhóm xây dựng bản tuần tự trên CPU và bản song song trên GPU cho
+\textbf{Blocked Cholesky}, \textbf{Jacobi} và \textbf{Conjugate Gradient (CG)}.
+Ba thuật toán giải cùng hệ $Ax=b$ với $A$ là ma trận thực, đặc, đối xứng
+xác định dương (SPD) và được lưu tường minh. Bộ đo chính dùng một vế phải
+mỗi lượt, cùng dữ liệu và cùng độ chính xác số cho hai nền tảng. Bài tích vô
+hướng hai vector là sản phẩm chung của môn học và được kiểm thử riêng. Mã
+reduction của bài chung có thể dùng lại trong CG sau khi kiểm chứng.
+
+\begin{itemize}
+  \item Với mỗi thuật toán, GPU giảm thời gian giải bao nhiêu so với CPU
+        một luồng? Kích thước nào bắt đầu bù được chi phí truyền dữ liệu?
+  \item Cholesky nhạy ra sao với kích thước tile? Với Jacobi và CG,
+        phép nhân ma trận--vector, reduction và đồng bộ chiếm bao nhiêu?
+  \item Thay đổi tần suất kiểm tra dừng của Jacobi ảnh hưởng ra sao đến
+        số vòng lặp, độ chính xác và tổng thời gian? Hai vùng nhớ nghiệm
+        của Jacobi đóng góp bao nhiêu vào bộ nhớ và thời gian xử lý?
+\end{itemize}
+
+\section{Bộ ma trận và kiểm thử}
+
+Bộ ma trận SPD có thể lấy từ nguồn bên ngoài hoặc tự sinh. Nhóm sẽ
+chốt nguồn, cách tái tạo và cách kiểm tra tính phù hợp với cả ba bộ giải,
+bao gồm điều kiện hội tụ của Jacobi. CPU và GPU dùng cùng $A,b$.
+
+\noindent \dien{Nguồn dữ liệu hoặc cách sinh ma trận}
+
+Chọn cách xác định nghiệm tham chiếu $x^\star$. Dùng cùng $x^{(0)}$ cho
+Jacobi và CG. Bộ kiểm thử có ca nhỏ biết nghiệm, kích thước dư tile/block
+và trường hợp đạt giới hạn vòng lặp. Kiểm tra độc lập nghiệm cuối từ
+$A,b$ gốc. Dùng công cụ kiểm tra truy cập và đồng bộ nếu backend hỗ trợ.
+
+\noindent \dien{Cách xác định nghiệm tham chiếu}
+
+\newpage
+\section{Thiết kế song song theo PCAM}
+
+\subsection{Blocked Cholesky}
+\pcam
+
+\subsection{Jacobi}
+\pcam
+
+\subsection{Conjugate Gradient}
+\pcam
+
+\section{Các mốc thực hiện}
+
+\begin{enumerate}
+  \item Tạo kho Git trong hai tuần đầu. Chốt môi trường, dạng đầu vào,
+        lịch và người phụ trách. Làm bài tích vô hướng, chuẩn bị dữ liệu,
+        bộ kiểm thử nhỏ và khung ghi kết quả.
+  \item Viết ba bản CPU một luồng. Kiểm tra sai số và trạng thái trả về.
+        Ghi thứ tự lưu dữ liệu, lựa chọn thư viện và cờ biên dịch.
+  \item Viết ba bản GPU. Đối chiếu CPU/GPU trên bộ nhỏ, kiểm tra kích
+        thước dư và đo thử từng pha trước khi chạy benchmark chính.
+  \item Chạy bộ đo đã khóa cấu hình, giữ dữ liệu thô và log lỗi. Phân
+        tích độ phân tán, thời gian giải, hội tụ và chi phí đồng bộ.
+  \item Hoàn thiện mã, script build/chạy/vẽ, dữ liệu mẫu hoặc script
+        sinh, README tái lập, báo cáo, slide, \field{AI\_USAGE.md} và
+        \field{CONTRIBUTIONS.md}. Mỗi thành viên dùng tài khoản riêng
+        và có commit thể hiện đóng góp. Ghi nguồn và giấy phép mã ngoài.
+\end{enumerate}
+
+\noindent \dien{Người phụ trách từng mốc} \quad \dien{Hạn từng mốc}
+
+\newpage
+\section{Ma trận cấu hình thí nghiệm}
+
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.24\textwidth}Y@{}}
+\toprule
+Trục thay đổi & Cấu hình và đối chứng \\
+\midrule
+Dữ liệu &
+Ít nhất ba kích thước $n_1<n_2<n_3$,
+trong đó ca lớn đủ để đánh giá GPU và vừa ngân sách bộ nhớ của cả ba
+bộ giải. Mỗi trường hợp giữ nguyên ma trận và vế phải khi đối chiếu.
+\newline \dien{Kích thước và mã các bộ ma trận} \\
+\addlinespace
+Nền tảng &
+CPU một luồng và GPU trên cùng bài toán. Ghi model CPU/GPU, số lõi,
+RAM/VRAM, hệ điều hành, backend, driver, compiler, cờ tối ưu, phiên
+bản thư viện và số luồng thư viện CPU.
+\newline \dien{Máy chạy, backend và kiểu số} \\
+\addlinespace
+Blocked Cholesky &
+Quét kích thước tile tại các $n$ đại diện. Giữ cấu hình còn lại cố định
+và ghi cách xử lý tile dư.
+\newline \dien{Tile size và kích thước quét} \\
+\addlinespace
+Jacobi &
+Đối chiếu kiểm tra phần dư mỗi vòng với mỗi $q$ vòng. Tách phép đo đổi
+con trỏ và sao chép vector thành thí nghiệm riêng, giữ nguyên $q$.
+Quét cấu hình nhóm luồng của kernel cập nhật nếu cần.
+\newline \dien{Các giá trị \(q\) và threads/block} \\
+\addlinespace
+CG &
+Ghi cấu hình kernel $Ap$ và reduction, vị trí lưu vô hướng, và quy tắc
+kiểm tra dừng. Khi quét số luồng mỗi block, giữ thuật toán reduction,
+tiêu chuẩn dừng và dữ liệu cố định.
+\newline \dien{Cấu hình kernel và reduction} \\
+\addlinespace
+Chạy lặp &
+Chạy nóng trước, sau đó lấy tối thiểu năm lượt đo mỗi cấu hình.
+Khôi phục $A$ nếu bị ghi đè và đặt lại trạng thái nghiệm trước mỗi lượt.
+Đo cùng ranh giới pha và ghi rõ cấu hình chạy bị lỗi.
+\newline \dien{Số warm-up, số lượt đo và thứ tự chạy} \\
+\bottomrule
+\end{tabularx}
+
+\subsection{Các quyết định cần khóa trước khi chạy}
+
+\begin{itemize}
+  \item Chọn FP32 hoặc FP64 cho bộ đo chính và khóa dung sai phù hợp.
+        \par\noindent\dien{Dung sai phần dư, ngưỡng sai số và số vòng tối đa}
+  \item Chốt số GPU và cách khảo sát tài nguyên. Thay đổi threads/block
+        trên cùng GPU là khảo sát cách ánh xạ. Nếu có $p$ GPU tương
+        đương và bản chạy đa GPU, cố định $n$ để đo strong scaling.
+        \dien{Số GPU khả dụng và trục đo efficiency}
+  \item Chọn chính sách dùng thư viện GPU, chế độ cấp phát và phạm vi
+        profiling. \par\noindent\dien{Thư viện hoặc kernel tự viết}
+\end{itemize}
+
+\newpage
+\section{Chỉ số và cách đo}
+
+\subsection{Độ chính xác và hội tụ}
+
+Gọi $r^{(k)}=b-Ax^{(k)}$ là vector phần dư và
+$e^{(k)}=x^{(k)}-x^\star$ là vector sai số. Nhóm chọn bao nhiêu chuẩn
+tùy mục tiêu thí nghiệm và ghi riêng chuẩn dùng để quyết định dừng.
+
+\noindent \dien{Chọn số lượng và danh sách chuẩn cần báo cáo}
+
+\noindent \dien{Chọn chuẩn dừng, ngưỡng và cách kết hợp điều kiện}
+
+Với mỗi chuẩn $\|\cdot\|_{\nu}$ đã chọn, tính
+\begin{align*}
+  R_{\nu}^{(k)} &= \|r^{(k)}\|_{\nu},
+  & R_{\nu,\mathrm{rel}}^{(k)} &= \frac{R_{\nu}^{(k)}}{\|b\|_{\nu}},\\
+  E_{\nu}^{(k)} &= \|e^{(k)}\|_{\nu},
+  & E_{\nu,\mathrm{rel}}^{(k)} &= \frac{E_{\nu}^{(k)}}{\|x^\star\|_{\nu}}.
+\end{align*}
+Khi mẫu số bằng không, báo chỉ số tuyệt đối tương ứng. Ví dụ về công thức
+chuẩn cho vector $v\in\mathbb R^n$:
+\[
+  \|v\|_1=\sum_{i=1}^n|v_i|,\qquad
+  \|v\|_2=\left(\sum_{i=1}^n|v_i|^2\right)^{1/2},\qquad
+  \|v\|_{\infty}=\max_{1\le i\le n}|v_i|.
+\]
+Gọi $\mathcal K$ là tập các vòng được kiểm tra, $D(k)$ là điều kiện dừng
+đã chọn và $K_{\max}$ là giới hạn vòng lặp. Ví dụ,
+$D(k)=[R_{\nu,\mathrm{rel}}^{(k)}\le\varepsilon_\nu]$. Nếu có vòng đạt
+chuẩn, số vòng đến hội tụ và số lần kiểm tra đến lúc dừng là
+\[
+  K_{\rm conv}=\min\{k\in\mathcal K:D(k)\},\qquad
+  N_{\rm check}=\bigl|\{k\in\mathcal K:k\le K_{\rm stop}\}\bigr|,
+\]
+với $K_{\rm stop}$ là vòng thực tế dừng. Giá trị này bằng $K_{\rm conv}$
+khi đạt chuẩn hoặc $K_{\max}$ khi chạm giới hạn. Ghi riêng lỗi số học. Với Jacobi,
+so sánh $\mathcal K$ khi kiểm tra mỗi vòng và mỗi $q$ vòng, bao gồm lần
+kiểm ở giới hạn nếu vòng đó chưa được kiểm. Với CG, có thể theo dõi phần
+dư truy hồi trong vòng lặp và xác nhận nghiệm cuối bằng $b-Ax$ tính lại.
+Cholesky chỉ dùng phép kiểm cuối. Báo số vòng thực tế và lý do dừng.
+
+\subsection{Tổng hợp các lượt đo}
+
+Với $m$ thời gian hợp lệ $t_1,\ldots,t_m$ cho cùng cấu hình và phạm vi,
+tính
+\[
+  \widetilde T=\operatorname{median}(t_1,\ldots,t_m),\qquad
+  [T_{\min},T_{\max}]=[\min_i t_i,\max_i t_i],\qquad
+  \mathrm{IQR}=Q_{0.75}-Q_{0.25}.
+\]
+$Q_a$ là phân vị mức $a$. Báo median và ít nhất một trong hai chỉ số phân
+tán. Ghi $m$ và loại lượt warm-up hoặc profiling ra khỏi tập thời gian so
+sánh chính. Giữ cả bản ghi các lượt thất bại.
+
+\newpage
+
+\subsection{Thời gian, đồng bộ và bộ nhớ}
+
+Đo wall-clock từ đầu thiết lập hoặc nạp đầu vào đến khi nghiệm về host.
+Ghi riêng thiết lập, I/O đầu vào, H2D ban đầu, pha giải và D2H cuối.
+Thời gian giải gồm truyền vô hướng và chờ phát sinh trong vòng lặp.
+Kiểm chứng nghiệm sau giải và ghi log nằm ngoài thời gian tổng.
+\[
+  T_{\rm total}=t^{\rm end}_{\rm total}-t^{\rm start}_{\rm total},\qquad
+  T_{\rm solve}=t^{\rm end}_{\rm solve}-t^{\rm start}_{\rm solve}.
+\]
+Các mốc $t$ ở đây dùng cùng đồng hồ host và quy đổi sang ms. Dùng event
+GPU để đo hoạt động thiết bị. Với pha $\phi$ có nhiều khoảng đo, tính
+\[
+  T_{\phi}=\sum_{j}(t^{\rm end}_{\phi,j}-t^{\rm start}_{\phi,j}),\qquad
+  P_{\phi}=100\frac{T_{\phi}}{T_{\rm solve}}\ \%.
+\]
+Đo riêng phân tích, giải tiến và giải lùi cho Cholesky. Đối với Jacobi và
+CG, tách cập nhật, nhân ma trận--vector, reduction, chờ đồng bộ và truyền
+vô hướng theo khả năng đo. Các pha chồng lấp có thể cho tổng tỷ lệ trên
+$100\%$. Đo profiling ở lượt riêng nếu công cụ ảnh hưởng thời gian.
+
+Gọi $N_\phi$ là số lần phát sinh hoạt động $\phi$, chẳng hạn số lần
+reduction, chờ host hoặc sao chép vector. Với $K_{\rm stop}>0$,
+\[
+  N_\phi=\sum_j \mathbf 1[\text{hoạt động }j\text{ thuộc pha }\phi],\qquad
+  \overline T_{\rm iter}=\frac{T_{\rm solve}}{K_{\rm stop}},\qquad
+  \overline N_{\phi}=\frac{N_{\phi}}{K_{\rm stop}}.
+\]
+
+Đối với Jacobi, ghi bộ nhớ dành cho hai vector, đỉnh bộ nhớ thiết bị
+đang dùng và lượng dữ liệu sao chép thiết bị--thiết bị.
+\[
+  M_{\rm vectors}=2ns,\qquad
+  M_{\rm peak}=\max_t M_{\rm device}(t),\qquad
+  B_{\rm copy}=\sum_{j=1}^{N_{\rm copy}} b_j.
+\]
+$s$ là số byte mỗi phần tử và $b_j$ là số byte truyền ở lần sao chép
+thứ $j$. Với sao chép toàn bộ vector, $b_j=ns$. Ghi $T_{\rm copy}$
+theo công thức thời gian pha ở trên.
+
+\subsection{Speedup và efficiency}
+
+So sánh cùng thuật toán, đầu vào, độ chính xác và phạm vi thời gian.
+\[
+  S_{\rm GPU}=\frac{\widetilde T_{\rm CPU,1}}{\widetilde T_{\rm GPU}},
+  \qquad S_p=\frac{\widetilde T_1}{\widetilde T_p},
+  \qquad E_p=\frac{S_p}{p}.
+\]
+Báo speedup riêng cho thời gian tổng và pha giải. Dùng $E_p$ khi $p$
+đếm các đơn vị tài nguyên đồng nhất, chẳng hạn số GPU cùng loại. Nếu
+chỉ có một GPU, báo ảnh hưởng của threads/block và chốt cách báo cáo
+efficiency với giảng viên. Khi xếp hạng các bộ giải, dùng thời gian đạt
+cùng tiêu chuẩn nghiệm và tính cả pha phân tích Cholesky.
+
+\newpage
+\section{Bản ghi của một lượt chạy}
+
+Đề xuất JSON Lines cho dữ liệu thô, một đối tượng mỗi lượt. Có thể xuất
+CSV phẳng để vẽ biểu đồ. Các trường không áp dụng dùng \field{null}.
+Một cấu hình có nhiều \field{run\_id} và cùng \field{config\_id}.
+\field{env\_id} trỏ tới bản mô tả máy và phần mềm lưu cùng dữ liệu thí nghiệm.
+
+\smallskip
+{\small
+\noindent\begin{tabularx}{\textwidth}{@{}p{0.22\textwidth}Y@{}}
+\toprule
+Nhóm trường & Thông tin cần ghi \\
+\midrule
+Định danh &
+\field{run\_id}, \field{config\_id}, \field{env\_id},
+\field{timestamp}, \field{repeat\_index}, \field{warmup},
+\field{profiled}, \field{git\_commit}. \\
+\addlinespace
+Đầu vào &
+\field{matrix\_id}, \field{n}, \field{source\_ref}, \field{seed},
+\field{matrix\_family},
+\field{rhs\_id}, \field{x0\_id}, \field{dtype}.
+Lưu mã phiên bản bộ sinh hoặc checksum trong manifest dữ liệu. \\
+\addlinespace
+Biến thể &
+\field{solver}, \field{backend}, \field{cpu\_threads}, \field{gpu\_count},
+\field{tile\_size}, \field{threads\_per\_block},
+\field{reduction\_variant}, \field{buffer\_mode},
+\field{stop\_rule}, \field{check\_every}, \field{report\_norms},
+\field{stop\_thresholds}, \field{error\_thresholds}, \field{max\_iters}. \\
+\addlinespace
+Thời gian &
+\field{total\_ms}, \field{setup\_ms}, \field{io\_ms},
+\field{h2d\_ms}, \field{solve\_ms}, \field{d2h\_ms}.
+Nhóm \field{phase\_ms} chứa \field{factor}, \field{forward},
+\field{backward}, \field{matvec}, \field{update}, \field{reduction},
+\field{sync\_wait}, \field{scalar\_transfer}, \field{buffer\_copy},
+tùy thuật toán và phương pháp đo. \\
+\addlinespace
+Tài nguyên &
+\field{peak\_device\_bytes}, \field{jacobi\_vector\_bytes},
+\field{buffer\_copy\_count}, \field{buffer\_copy\_bytes},
+\field{reduction\_count}, \field{host\_sync\_count}. \\
+\addlinespace
+Kết quả &
+\field{status}, \field{stop\_reason}, \field{iterations},
+\field{checks}, \field{norm\_metrics}, \field{log\_ref}.
+\field{norm\_metrics} lưu phần dư và sai số (tuyệt đối, tương đối) theo
+mã từng chuẩn. \\
+\bottomrule
+\end{tabularx}\par
+}
+
+\smallskip
+\noindent Mỗi cấu hình lưu lệnh chạy, tham số, thông tin môi trường và
+phương pháp đo. Từ dữ liệu thô, tạo bảng median và độ phân tán, đồ thị
+thời gian/speedup theo $n$, biểu đồ phân bổ thời gian theo pha và đồ thị
+phần dư theo vòng lặp từ các lượt đo hội tụ riêng.
+
+\section{Các phần mở rộng tùy chọn}
+
+Sau khi có số liệu cho bộ đo chính, có thể chọn một nhánh riêng.
+\textbf{Sparse} dùng CSR cho Jacobi/CG và báo kích thước, số phần tử
+khác không và băng thông. \textbf{Matrix-free} đo CG với một toán tử
+đại số có cấu trúc, đối chiếu cùng $A$ lưu tường minh.
+\textbf{Tiền điều kiện} đối chiếu CG và PCG với $M=\operatorname{diag}(A)$,
+gồm chi phí tạo và áp dụng $M^{-1}$, số vòng lặp và thời gian đạt chuẩn.
+Mỗi nhánh có bộ so sánh riêng.
+
+\smallskip
+\noindent\textit{Căn cứ yêu cầu môn học.} \emph{Chu de NHOM 2026-1 v1s.docx},
+mục A1, B, B.1, B.2 và Chủ đề 1.
+
+\end{document}
