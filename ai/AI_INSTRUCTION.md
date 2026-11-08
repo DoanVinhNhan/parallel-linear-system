@@ -25,4 +25,8 @@
 
 ## Nhật ký sử dụng
 
-Ghi mỗi phiên vào [AI_USAGE.md](AI_USAGE.md), gồm thời gian, người sử dụng, công cụ hoặc mô hình, mục đích, prompt chính, đầu ra, phần được dùng, chỉnh sửa, bằng chứng kiểm chứng và commit hoặc issue liên quan. Giữ bản tóm tắt theo ngày trong [ai-history](ai-history/). Cập nhật trạng thái khi nhóm đã duyệt, kiểm thử hoặc quyết định bỏ một đề xuất.
+Trước mỗi lượt commit, cập nhật [AI_USAGE.md](AI_USAGE.md#mẫu-cho-phiên-tiếp-theo) theo mẫu có sẵn trong tệp và đưa phần cập nhật vào cùng commit. Ghi thời gian, người sử dụng, công cụ hoặc mô hình, mục đích, prompt chính, đầu ra, phần được dùng, chỉnh sửa, bằng chứng kiểm chứng và commit hoặc issue liên quan.
+
+Gộp vào mục cuối nếu công việc nhỏ, diễn ra gần nhau và tiếp nối cùng nội dung. Mở mục mới nếu đã qua một khoảng thời gian đáng kể hoặc khối lượng công việc đủ lớn để ghi riêng. Khi gộp, giữ các mốc thời gian và thông tin kiểm chứng cần thiết.
+
+Giữ bản tóm tắt theo ngày trong [ai-history](ai-history/). Cập nhật trạng thái khi nhóm đã duyệt, kiểm thử hoặc quyết định bỏ một đề xuất.
