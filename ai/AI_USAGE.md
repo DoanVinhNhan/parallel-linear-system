@@ -35,11 +35,11 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
 - **Mục đích** — Soạn, chỉnh sửa và tổ chức kế hoạch LaTeX/PDF, hướng dẫn AI, nhật ký sử dụng AI và bản tổng hợp cuộc trò chuyện.
 - **Prompt chính** — Lập kế hoạch cho ba bộ giải GPU trên tập SPD dựa trên đề môn học. Nêu các bước thực hiện trong phần tóm tắt, xác định cấu hình thử nghiệm, công thức đo và thông tin cần lưu cho mỗi lượt chạy. Quy định cách cập nhật nhật ký AI trước mỗi commit.
-- **Kết quả** — Tạo kế hoạch và tài liệu AI, sau đó sắp xếp kế hoạch trong `human-doc/`, tài liệu AI trong `ai/` và README ở thư mục gốc. Bổ sung quy tắc gộp hoặc mở mục nhật ký theo thời gian và khối lượng công việc.
+- **Kết quả** — Tạo kế hoạch và tài liệu AI, sau đó sắp xếp kế hoạch trong `human-doc/`, tài liệu AI trong `ai/` và README ở thư mục gốc. Bổ sung quy tắc gộp hoặc mở mục nhật ký theo thời gian và khối lượng công việc, đồng thời quy định cách ghi commit sắp tạo khi mã Git chưa có.
 - **Phần đã sử dụng** — Bản kế hoạch có phần tóm tắt, công thức đo và lược đồ lưu sai số theo từng chuẩn. Quy tắc cập nhật nhật ký được ghi trong `AI_INSTRUCTION.md` và áp dụng khi chuẩn bị lượt commit này.
 - **Chỉnh sửa của nhóm** — Để mở nguồn ma trận và đánh dấu chỗ nhóm tự điền bốn đầu mục PCAM cho từng thuật toán, số lượng chuẩn, loại chuẩn và tiêu chuẩn dừng.
 - **Kiểm chứng** — Đối chiếu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI với văn bản đề. Biên dịch LaTeX và kiểm tra bố cục các bản PDF. Đối chiếu liên kết tới mẫu nhật ký và kiểm tra các thay đổi Markdown trước khi commit. Công thức và lược đồ bản ghi dùng cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
-- **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc), `0f316a9` (change doc).
+- **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc), `0f316a9` (change doc), `5c1730a` (change instruction), `lastest commit - change instruction`.
 
 ## Mẫu cho phiên tiếp theo
 
