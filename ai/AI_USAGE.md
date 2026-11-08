@@ -34,12 +34,12 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Người sử dụng** — Đoàn Vĩnh Nhân.
 - **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
 - **Mục đích** — Soạn kế hoạch LaTeX/PDF, hướng dẫn AI, nhật ký sử dụng AI và bản tổng hợp cuộc trò chuyện.
-- **Prompt chính** — Lập kế hoạch xây dựng ba bộ giải GPU trên tập SPD, chốt các số liệu cần đo, cấu hình cần khảo sát, trường của mỗi lượt chạy và đánh dấu các giá trị nhóm cần điền. Đối chiếu với tệp đề môn học.
-- **Kết quả** — Tạo bản kế hoạch với thiết kế PCAM, mốc thực hiện, cấu hình, phương pháp đo và lược đồ bản ghi, cùng ba tệp Markdown về sử dụng AI.
+- **Prompt chính** — Lập kế hoạch xây dựng ba bộ giải GPU trên tập SPD, chốt các số liệu cần đo, cấu hình cần khảo sát, trường của mỗi lượt chạy và đánh dấu các giá trị nhóm cần điền. Đối chiếu với tệp đề môn học. Bổ sung phần tóm tắt nêu ba họ thuật toán và các việc nhóm cần thực hiện.
+- **Kết quả** — Tạo bản kế hoạch với thiết kế PCAM, mốc thực hiện, cấu hình, phương pháp đo và lược đồ bản ghi, cùng ba tệp Markdown về sử dụng AI. Bổ sung phần tóm tắt ngay dưới tiêu đề trong tệp LaTeX và PDF.
 - **Phần đã sử dụng** — Bản kế hoạch và các tệp ghi nhận AI được tạo cho nhóm rà soát.
 - **Chỉnh sửa của nhóm** — [ĐIỀN sau khi rà soát. Ghi mục đã sửa và lý do].
-- **Kiểm chứng** — Yêu cầu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI được đối chiếu với văn bản đề. Mã LaTeX biên dịch thành công và cả 5 trang PDF đã được kiểm tra bố cục. Chỉ số và lược đồ bản ghi là thiết kế cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
-- **Commit/issue liên quan** — Initial commit.
+- **Kiểm chứng** — Yêu cầu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI được đối chiếu với văn bản đề. Bản đầu và bản có tóm tắt được biên dịch và kiểm tra bố cục. Chỉ số và lược đồ bản ghi là thiết kế cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
+- **Commit/issue liên quan** — Initial commit, add abstract.
 
 ## 4. Sửa kế hoạch và tổ chức tài liệu
 

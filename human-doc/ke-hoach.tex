@@ -32,15 +32,23 @@
 \begin{document}
 \maketitle
 
+\begin{abstract}
+Nhóm sẽ xây dựng ba bộ giải hệ tuyến tính $Ax=b$: Blocked Cholesky
+(phương pháp trực tiếp), Jacobi (phương pháp lặp tĩnh) và Conjugate
+Gradient (CG, phương pháp Krylov). Mỗi thuật toán có bản tuần tự trên
+CPU và bản song song trên GPU được thiết kế theo PCAM. Nhóm sẽ chuẩn bị
+bộ ma trận đối xứng xác định dương dùng chung, kiểm thử nghiệm và chạy
+benchmark trên ít nhất ba kích thước. Các phép đo dùng để so sánh thời
+gian, speedup, độ chính xác, hội tụ và chi phí đồng bộ. Nhóm cũng sẽ
+hoàn thành bài tích vô hướng chung và lưu kết quả từng lượt để tái lập.
+\end{abstract}
+
 \section{Phạm vi và câu hỏi thí nghiệm}
 
-Nhóm xây dựng bản tuần tự trên CPU và bản song song trên GPU cho
-\textbf{Blocked Cholesky}, \textbf{Jacobi} và \textbf{Conjugate Gradient (CG)}.
-Ba thuật toán giải cùng hệ $Ax=b$ với $A$ là ma trận thực, đặc, đối xứng
-xác định dương (SPD) và được lưu tường minh. Bộ đo chính dùng một vế phải
-mỗi lượt, cùng dữ liệu và cùng độ chính xác số cho hai nền tảng. Bài tích vô
-hướng hai vector là sản phẩm chung của môn học và được kiểm thử riêng. Mã
-reduction của bài chung có thể dùng lại trong CG sau khi kiểm chứng.
+Bộ đo chính dùng ma trận thực, đặc, đối xứng xác định dương (SPD) và
+lưu tường minh. Mỗi lượt giải một vế phải, với cùng dữ liệu và độ chính
+xác số trên hai nền tảng. Bài tích vô hướng hai vector được kiểm thử riêng.
+Mã reduction của bài chung có thể dùng lại trong CG sau khi kiểm chứng.
 
 \begin{itemize}
   \item Với mỗi thuật toán, GPU giảm thời gian giải bao nhiêu so với CPU
