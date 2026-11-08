@@ -33,26 +33,13 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Thời gian** — 08/11/2026, theo ngày của bản lịch sử được yêu cầu.
 - **Người sử dụng** — Đoàn Vĩnh Nhân.
 - **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
-- **Mục đích** — Soạn kế hoạch LaTeX/PDF, hướng dẫn AI, nhật ký sử dụng AI và bản tổng hợp cuộc trò chuyện.
-- **Prompt chính** — Lập kế hoạch xây dựng ba bộ giải GPU trên tập SPD, chốt các số liệu cần đo, cấu hình cần khảo sát, trường của mỗi lượt chạy và đánh dấu các giá trị nhóm cần điền. Đối chiếu với tệp đề môn học. Bổ sung phần tóm tắt nêu ba họ thuật toán và các việc nhóm cần thực hiện.
-- **Kết quả** — Tạo bản kế hoạch với thiết kế PCAM, mốc thực hiện, cấu hình, phương pháp đo và lược đồ bản ghi, cùng ba tệp Markdown về sử dụng AI. Bổ sung phần tóm tắt ngay dưới tiêu đề trong tệp LaTeX và PDF.
-- **Phần đã sử dụng** — Bản kế hoạch và các tệp ghi nhận AI được tạo cho nhóm rà soát.
-- **Chỉnh sửa của nhóm** — [ĐIỀN sau khi rà soát. Ghi mục đã sửa và lý do].
-- **Kiểm chứng** — Yêu cầu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI được đối chiếu với văn bản đề. Bản đầu và bản có tóm tắt được biên dịch và kiểm tra bố cục. Chỉ số và lược đồ bản ghi là thiết kế cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
-- **Commit/issue liên quan** — Initial commit, add abstract.
-
-## 4. Sửa kế hoạch và tổ chức tài liệu
-
-- **Thời gian** — [ĐIỀN ngày rà soát nếu cần].
-- **Người sử dụng** — Đoàn Vĩnh Nhân.
-- **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
-- **Mục đích** — Chỉnh kế hoạch và sắp xếp tài liệu vào một thư mục trên Desktop.
-- **Prompt chính** — Để nguồn ma trận mở, dành bốn mục PCAM của mỗi thuật toán cho nhóm tự điền, ghi công thức đo, và để nhóm tự chọn số lượng cũng như loại chuẩn.
-- **Kết quả** — Cập nhật mã LaTeX và PDF. Cấu trúc bàn giao có human-doc cho kế hoạch, ai cho nhật ký và hướng dẫn, cùng README ở thư mục gốc.
-- **Phần đã sử dụng** — Công thức tổng quát theo chuẩn được chọn và lược đồ lưu kết quả theo từng chuẩn đã đưa vào kế hoạch.
-- **Chỉnh sửa của người dùng** — Nhóm giữ quyền chọn nguồn ma trận, viết PCAM và chốt chuẩn. Các chỗ này được đánh dấu trong PDF.
-- **Kiểm chứng** — Kiểm tra biên dịch và bố cục bản PDF cập nhật. [ĐIỀN người duyệt và quyết định cuối của nhóm].
-- **Commit/issue liên quan** — [ĐIỀN khi có].
+- **Mục đích** — Soạn, chỉnh sửa và tổ chức kế hoạch LaTeX/PDF, hướng dẫn AI, nhật ký sử dụng AI và bản tổng hợp cuộc trò chuyện.
+- **Prompt chính** — Lập kế hoạch cho ba bộ giải GPU trên tập SPD dựa trên đề môn học. Nêu các bước thực hiện trong phần tóm tắt, xác định cấu hình thử nghiệm, công thức đo và thông tin cần lưu cho mỗi lượt chạy.
+- **Kết quả** — Tạo kế hoạch và tài liệu AI, sau đó sắp xếp kế hoạch trong `human-doc/`, tài liệu AI trong `ai/` và README ở thư mục gốc.
+- **Phần đã sử dụng** — Bản kế hoạch có phần tóm tắt, công thức đo và lược đồ lưu sai số theo từng chuẩn. Các tệp ghi nhận AI được tạo để nhóm rà soát.
+- **Chỉnh sửa của nhóm** — Để mở nguồn ma trận và đánh dấu chỗ nhóm tự điền bốn đầu mục PCAM cho từng thuật toán, số lượng chuẩn, loại chuẩn và tiêu chuẩn dừng.
+- **Kiểm chứng** — Đối chiếu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI với văn bản đề. Biên dịch LaTeX và kiểm tra bố cục các bản PDF. Công thức và lược đồ bản ghi dùng cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
+- **Commit/issue liên quan** — `Initial commit`, `add abstract`, `change doc`.
 
 ## Mẫu cho phiên tiếp theo
 
