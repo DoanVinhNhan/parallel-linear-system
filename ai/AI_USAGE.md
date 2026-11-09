@@ -41,6 +41,18 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Kiểm chứng** — Đối chiếu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI với văn bản đề. Biên dịch LaTeX và kiểm tra bố cục các bản PDF. Đối chiếu liên kết tới mẫu nhật ký và kiểm tra các thay đổi Markdown trước khi commit. Công thức và lược đồ bản ghi dùng cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
 - **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc), `0f316a9` (change doc), `5c1730a` (change instruction), `lastest commit - change instruction`.
 
+## 4. Lập outline công việc
+- **Thời gian** — 09/11/2026.
+- **Người sử dụng** — Đặng Thị Thùy Dương.
+- **Công cụ/mô hình** — ChatGPT (GPT-6).
+- **Mục đích** — Tổng hợp các công việc cần thực hiện cho báo cáo cuối kì môn Tính toán song song..
+- **Prompt chính hoặc bản tóm tắt** — Đối chiếu đề bài với kế hoạch của nhóm, liệt kê các công việc theo trình tự thực hiện và chuyển thành bảng Markdown.
+- **Kết quả** — Đề xuất bảng outline gồm 16 công việc từ chuẩn bị môi trường đến hoàn thiện báo cáo.
+- **Phần đã sử dụng** — Nội dung bảng human-doc/outline_table.md.
+- **Chỉnh sửa của nhóm** — Chưa chỉnh sửa.
+- **Kiểm chứng** — Đã đối chiếu nội dung outline với đề bài được cung cấp, ke-hoach.pdf và AI_INSTRUCTION.md. Chưa lập trình hoặc chạy thực nghiệm.
+- **Commit/issue liên quan** — `lastest commit - add outline_table`.
+
 ## Mẫu cho phiên tiếp theo
 
 - **Thời gian** — [ĐIỀN].
