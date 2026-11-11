@@ -39,7 +39,7 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Phần đã sử dụng** — Bản kế hoạch có phần tóm tắt, công thức đo và lược đồ lưu sai số theo từng chuẩn. Quy tắc cập nhật nhật ký được ghi trong `AI_INSTRUCTION.md` và áp dụng khi chuẩn bị lượt commit này.
 - **Chỉnh sửa của nhóm** — Để mở nguồn ma trận và đánh dấu chỗ nhóm tự điền bốn đầu mục PCAM cho từng thuật toán, số lượng chuẩn, loại chuẩn và tiêu chuẩn dừng.
 - **Kiểm chứng** — Đối chiếu PCAM, bài chung, số kích thước, số lượt đo và khai báo AI với văn bản đề. Biên dịch LaTeX và kiểm tra bố cục các bản PDF. Đối chiếu liên kết tới mẫu nhật ký và kiểm tra các thay đổi Markdown trước khi commit. Công thức và lược đồ bản ghi dùng cho thí nghiệm dự kiến. [ĐIỀN người duyệt và bằng chứng kiểm chứng của nhóm].
-- **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc), `0f316a9` (change doc), `5c1730a` (change instruction), `lastest commit - change instruction`.
+- **Commit/issue liên quan** — `2e37f0f` (Initial commit), `209afb7` (add abstract), `9acd038` (change doc), `0f316a9` (change doc), `5c1730a` (change instruction), `d32d00b` (change instruction).
 
 ## 4. Lập outline công việc
 - **Thời gian** — 09/11/2026.
@@ -51,7 +51,20 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Phần đã sử dụng** — Nội dung bảng human-doc/outline_table.md.
 - **Chỉnh sửa của nhóm** — Chưa chỉnh sửa.
 - **Kiểm chứng** — Đã đối chiếu nội dung outline với đề bài được cung cấp, ke-hoach.pdf và AI_INSTRUCTION.md. Chưa lập trình hoặc chạy thực nghiệm.
-- **Commit/issue liên quan** — `lastest commit - add outline_table`.
+- **Commit/issue liên quan** — `66a1f6b` (add outline_table), `fb852eb` (update checklist and outline).
+
+## 5. Thêm hướng dẫn cho Codex
+
+- **Thời gian** — 11/11/2026.
+- **Người sử dụng** — Đoàn Vĩnh Nhân.
+- **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
+- **Mục đích** — Đồng bộ kho đồ án và chỉ rõ tài liệu, phạm vi công việc và quy trình ghi nhật ký cho Codex.
+- **Prompt chính** — Pull repo, tạo `AGENTS.md` ở thư mục gốc, cập nhật các dấu tạm của commit trước trong `AI_USAGE.md`, rồi commit và push.
+- **Kết quả** — Thêm `AGENTS.md` và cập nhật mã commit trong mục 3 và 4.
+- **Phần đã sử dụng** — Hướng dẫn ở gốc repo trỏ đến kế hoạch, checklist, outline và quy trình sử dụng AI.
+- **Chỉnh sửa của nhóm** — Yêu cầu chốt các mã commit từ lịch sử Git trước khi tạo commit mới.
+- **Kiểm chứng** — Kiểm tra các đường dẫn trong `AGENTS.md` và đối chiếu mã, thông điệp và tệp thay đổi của các commit liên quan.
+- **Commit/issue liên quan** — `lastest commit - add AGENTS.md`.
 
 ## Mẫu cho phiên tiếp theo
 
