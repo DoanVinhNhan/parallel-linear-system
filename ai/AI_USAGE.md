@@ -64,7 +64,20 @@ Nhật ký ghi nhận các lượt trao đổi về chọn đề tài và lập 
 - **Phần đã sử dụng** — Hướng dẫn ở gốc repo trỏ đến kế hoạch, checklist, outline và quy trình sử dụng AI.
 - **Chỉnh sửa của nhóm** — Yêu cầu chốt các mã commit từ lịch sử Git trước khi tạo commit mới.
 - **Kiểm chứng** — Kiểm tra các đường dẫn trong `AGENTS.md` và đối chiếu mã, thông điệp và tệp thay đổi của các commit liên quan.
-- **Commit/issue liên quan** — `lastest commit - add AGENTS.md`.
+- **Commit/issue liên quan** — `0c16622` (add AGENTS.md).
+
+## 6. Tìm và lập danh mục tài liệu tham khảo
+
+- **Thời gian** — 12/11/2026.
+- **Người sử dụng** — Đoàn Vĩnh Nhân.
+- **Công cụ/mô hình** — Codex (GPT-6.1 Sol).
+- **Mục đích** — Tìm nguồn lý thuyết và triển khai cho Blocked Cholesky, Jacobi và Conjugate Gradient.
+- **Prompt chính** — Tìm paper hoặc giáo trình phù hợp để đọc và trích dẫn, tải các nguồn có thể truy cập về máy và thêm BibTeX cùng danh mục có chú thích vào kho.
+- **Kết quả** — Lập danh mục tám nguồn, gồm bảy bài báo hoặc tài liệu học thuật và một mẫu mã NVIDIA. Tải sáu PDF và mã mẫu vào Downloads. Với bài Jacobi của Zhang và cộng sự, lưu dữ liệu trích dẫn Crossref và liên kết IEEE Xplore vì chưa lấy được toàn văn.
+- **Phần đã sử dụng** — Khóa trích dẫn và ghi chú về các mục liên quan đến lý thuyết, triển khai GPU, hội tụ và đồng bộ trong `references/`.
+- **Chỉnh sửa của nhóm** — Yêu cầu lưu các tệp tải về bên ngoài kho và chỉ đưa danh mục cùng BibTeX vào `references/`.
+- **Kiểm chứng** — Đối chiếu thông tin trích dẫn với nhà xuất bản hoặc bản ghi DOI, kiểm tra tiêu đề của sáu PDF, đối chiếu khóa với danh mục và chạy BibTeX cho cả tám mục.
+- **Commit/issue liên quan** — `lastest commit - add references`.
 
 ## Mẫu cho phiên tiếp theo
 
